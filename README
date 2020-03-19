@@ -1,0 +1,43 @@
+Roinita Lucian-Teodor
+325CA - 2019
+
+POO - Proiect
+
+--- Etapa 1 ---
+
+In clasa GameManager am adus inputurile si am initializat in constuctor
+lista de eroi. Apoi in metoda startGame() am mutat fiecare erou in noua
+sa celula, dupa care am verificat fiecare celula si am apelat metodele
+de atac atunci cand am gasit doi pe aceeasi pozitie.
+
+Fiecare rasa de erou are clasa sa, toate extinzand clasa abstracta Hero.
+Clasa Hero contine doua metode abstracte - castSpell1 si castSpell2, pe
+care fiecare clasa mostenita le implementeaza in functie de rasa eroului.
+
+Am folosit Double Dispatch pentru a determina coeficientul de amplificare
+in functie de rasa, mai exact la metodele getRaceModifier, ce returneaza
+o constanta in functie de tipul obiectului primit ca parametru.
+
+
+--- Etapa 2 ---
+
+Am adaugat noi functionalitati la codul scris la etapa anterioara:
+ingerii, strategiile si Marele Magician.
+
+Fiecare clasa specializata de inger mosteneste clasa abstracta Angel,
+iar obiectele sunt create cu ajutorul unui Factory. De asemenea, am
+folosit, ca si pentru eroi, pattern-ul Visitor. Clasa Angel are metode
+abstracte actOnHero(Hero) pentru ficare clasa care mosteneste Hero, iar
+subclasele sale implementeaza aceste metode in functie de modul in care
+ingerii trebuie sa interactioneze cu fiecare tip de erou in parte.
+
+Strategiile sunt implementate prin pattern-ul Strategy. Supraincarcand
+metoda applyStrategy(), putem astfel alege in mod dinamic strategia de
+joc a unui erou.
+
+Marele Magician este un Observer. El este notificat de catre alte obiecte
+(Observable: eroi, ingeri) cand ceva important se intampla in joc.
+Notificarea se face apeland metodele update(), care au diverse seturi de
+argumente.
+
+Am folosit pattern-ul Singleton pentru harta si pentru Marele Magician.
